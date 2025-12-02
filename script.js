@@ -1,4 +1,6 @@
-// Create a 16x16 grid here
+function addNum(a, b) {
+  return a + b;
+}
 
 // function removeGrid() {
 //   while (gridContainer.firstChild) {
