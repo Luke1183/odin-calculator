@@ -18,6 +18,22 @@ function divNum(a, b) {
   }
 }
 
+function operate(a, b, operator) {
+  if (operator === "add") {
+    return addNum(a, b);
+  } else if (operator === "sub") {
+    return subNum(a, b);
+  } else if (operator === "mul") {
+    return mulNum(a, b);
+  } else {
+    return divNum(a, b);
+  }
+}
+
+let a = 0;
+let b = 0;
+let operator = "";
+
 // function removeGrid() {
 //   while (gridContainer.firstChild) {
 //     gridContainer.removeChild(gridContainer.firstChild);
