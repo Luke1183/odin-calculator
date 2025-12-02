@@ -2,6 +2,22 @@ function addNum(a, b) {
   return a + b;
 }
 
+function subNum(a, b) {
+  return a - b;
+}
+
+function mulNum(a, b) {
+  return a * b;
+}
+
+function divNum(a, b) {
+  if (b == 0) {
+    return "Can't divide by 0";
+  } else {
+    return a / b;
+  }
+}
+
 // function removeGrid() {
 //   while (gridContainer.firstChild) {
 //     gridContainer.removeChild(gridContainer.firstChild);
