@@ -34,6 +34,14 @@ let a = 0;
 let b = 0;
 let operator = "";
 
+const calcDisplay = document.querySelector("#display");
+const dig1Button = document.querySelector("#dig1");
+
+dig1Button.addEventListener("click", () => {
+  a = 1;
+  calcDisplay.textContent = a;
+});
+
 // function removeGrid() {
 //   while (gridContainer.firstChild) {
 //     gridContainer.removeChild(gridContainer.firstChild);
