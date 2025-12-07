@@ -37,6 +37,8 @@ let operator = undefined;
 const calcDisplay = document.querySelector("#display");
 const buttons = document.querySelectorAll("button");
 
+calcDisplay.textContent = "0";
+
 buttons.forEach((button) => {
   button.addEventListener("click", () => {
     if (
@@ -53,43 +55,117 @@ buttons.forEach((button) => {
     ) {
       if (num1 === undefined) {
         num1 = button.textContent;
-        calcDisplay.textContent = `${num1}`;
       } else if (operator === undefined && !(num1 === undefined)) {
         num1 = num1 + button.textContent;
-        calcDisplay.textContent = `${num1}`;
       } else if (!(operator === undefined) && num2 === undefined) {
         num2 = button.textContent;
-        calcDisplay.textContent = `${num1}${operator}${num2}`;
       } else {
         num2 = num2 + button.textContent;
-        calcDisplay.textContent = `${num1}${operator}${num2}`;
       }
     }
+
     if (
       (button.textContent === "+" ||
         button.textContent === "-" ||
         button.textContent === "*" ||
         button.textContent === "/") &&
-      num1 === undefined
+      num1 === undefined &&
+      operator === undefined &&
+      num2 === undefined
     ) {
       calcDisplay.textContent = "Input a number";
-    } else {
-      if (button.textContent === "+") {
-        operator = " + ";
-        calcDisplay.textContent = `${calcDisplay.textContent} + `;
+    } else if (
+      (button.textContent === "+" ||
+        button.textContent === "-" ||
+        button.textContent === "*" ||
+        button.textContent === "/") &&
+      !(num1 === undefined) &&
+      operator === undefined &&
+      num2 === undefined
+    ) {
+      if (button.textContent === "+" || button.textContent === "-") {
+        operator = ` ${button.textContent} `;
+      } else {
+        operator = `${button.textContent}`;
       }
-      if (button.textContent === "-") {
-        operator = " - ";
-        calcDisplay.textContent = `${calcDisplay.textContent} - `;
+    } else if (
+      (button.textContent === "+" ||
+        button.textContent === "-" ||
+        button.textContent === "*" ||
+        button.textContent === "/") &&
+      !(num1 === undefined) &&
+      !(operator === undefined) &&
+      num2 === undefined
+    ) {
+      if (button.textContent === "+" || button.textContent === "-") {
+        operator = ` ${button.textContent} `;
+      } else {
+        operator = `${button.textContent}`;
       }
-      if (button.textContent === "*") {
-        operator = "*";
-        calcDisplay.textContent = `${calcDisplay.textContent} * `;
+    } else if (
+      (button.textContent === "+" ||
+        button.textContent === "-" ||
+        button.textContent === "*" ||
+        button.textContent === "/") &&
+      !(num1 === undefined) &&
+      !(operator === undefined) &&
+      !(num2 === undefined)
+    ) {
+      if (button.textContent === "+" || button.textContent === "-") {
+        num1 = operate(Number(num1), Number(num2), operator);
+        operator = ` ${button.textContent} `;
+        num2 = undefined;
+      } else {
+        num1 = operate(Number(num1), Number(num2), operator);
+        operator = `${button.textContent}`;
+        num2 = undefined;
       }
-      if (button.textContent === "/") {
-        operator = "/";
-        calcDisplay.textContent = `${calcDisplay.textContent} / `;
-      }
+    }
+
+    if (
+      button.textContent === "=" &&
+      !(num1 === undefined) &&
+      !(operator === undefined) &&
+      num2 === undefined
+    ) {
+      operator = undefined;
+    } else if (
+      button.textContent === "=" &&
+      !(num1 === undefined) &&
+      !(operator === undefined) &&
+      !(num2 === undefined)
+    ) {
+      num1 = operate(Number(num1), Number(num2), operator);
+      operator = undefined;
+      num2 = undefined;
+    }
+
+    if (button.textContent === "Clear") {
+      num1 = undefined;
+      operator = undefined;
+      num2 = undefined;
+    }
+
+    if (num1 === undefined && operator === undefined && num2 === undefined) {
+      calcDisplay.textContent = "0";
+    } else if (
+      !(num1 === undefined) &&
+      operator === undefined &&
+      num2 === undefined
+    ) {
+      calcDisplay.textContent = `${num1}`;
+    } else if (
+      !(num1 === undefined) &&
+      !(operator === undefined) &&
+      num2 === undefined
+    ) {
+      calcDisplay.textContent = `${num1}${operator}`;
+    } else if (
+      !(num1 === undefined) &&
+      !(operator === undefined) &&
+      !(num2 === undefined)
+    ) {
+      calcDisplay.textContent = `${num1}${operator}${num2}`;
     }
   });
 });
