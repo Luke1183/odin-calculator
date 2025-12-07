@@ -19,27 +19,79 @@ function divNum(a, b) {
 }
 
 function operate(a, b, operator) {
-  if (operator === "add") {
+  if (operator === " + ") {
     return addNum(a, b);
-  } else if (operator === "sub") {
+  } else if (operator === " - ") {
     return subNum(a, b);
-  } else if (operator === "mul") {
+  } else if (operator === "*") {
     return mulNum(a, b);
-  } else {
+  } else if (operator === "/") {
     return divNum(a, b);
   }
 }
 
-let a = 0;
-let b = 0;
-let operator = "";
+let num1 = undefined;
+let num2 = undefined;
+let operator = undefined;
 
 const calcDisplay = document.querySelector("#display");
-const dig1Button = document.querySelector("#dig1");
+const buttons = document.querySelectorAll("button");
 
-dig1Button.addEventListener("click", () => {
-  a = 1;
-  calcDisplay.textContent = a;
+buttons.forEach((button) => {
+  button.addEventListener("click", () => {
+    if (
+      button.textContent === "0" ||
+      button.textContent === "1" ||
+      button.textContent === "2" ||
+      button.textContent === "3" ||
+      button.textContent === "4" ||
+      button.textContent === "5" ||
+      button.textContent === "6" ||
+      button.textContent === "7" ||
+      button.textContent === "8" ||
+      button.textContent === "9"
+    ) {
+      if (num1 === undefined) {
+        num1 = button.textContent;
+        calcDisplay.textContent = `${num1}`;
+      } else if (operator === undefined && !(num1 === undefined)) {
+        num1 = num1 + button.textContent;
+        calcDisplay.textContent = `${num1}`;
+      } else if (!(operator === undefined) && num2 === undefined) {
+        num2 = button.textContent;
+        calcDisplay.textContent = `${num1}${operator}${num2}`;
+      } else {
+        num2 = num2 + button.textContent;
+        calcDisplay.textContent = `${num1}${operator}${num2}`;
+      }
+    }
+    if (
+      (button.textContent === "+" ||
+        button.textContent === "-" ||
+        button.textContent === "*" ||
+        button.textContent === "/") &&
+      num1 === undefined
+    ) {
+      calcDisplay.textContent = "Input a number";
+    } else {
+      if (button.textContent === "+") {
+        operator = " + ";
+        calcDisplay.textContent = `${calcDisplay.textContent} + `;
+      }
+      if (button.textContent === "-") {
+        operator = " - ";
+        calcDisplay.textContent = `${calcDisplay.textContent} - `;
+      }
+      if (button.textContent === "*") {
+        operator = "*";
+        calcDisplay.textContent = `${calcDisplay.textContent} * `;
+      }
+      if (button.textContent === "/") {
+        operator = "/";
+        calcDisplay.textContent = `${calcDisplay.textContent} / `;
+      }
+    }
+  });
 });
 
 // function removeGrid() {
