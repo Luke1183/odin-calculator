@@ -102,7 +102,9 @@ buttons.forEach((button) => {
       !(operator === undefined) &&
       num2 === undefined
     ) {
-      if (button.textContent === "+" || button.textContent === "-") {
+      if (button.textContent === "-") {
+        num2 = button.textContent;
+      } else if (button.textContent === "+") {
         operator = ` ${button.textContent} `;
       } else {
         operator = `${button.textContent}`;
@@ -116,11 +118,14 @@ buttons.forEach((button) => {
       !(operator === undefined) &&
       !(num2 === undefined)
     ) {
-      if (button.textContent === "+" || button.textContent === "-") {
+      if (
+        (button.textContent === "+" || button.textContent === "-") &&
+        !(num2 === "-")
+      ) {
         num1 = operate(Number(num1), Number(num2), operator);
         operator = ` ${button.textContent} `;
         num2 = undefined;
-      } else {
+      } else if (!(num2 === "-")) {
         num1 = operate(Number(num1), Number(num2), operator);
         operator = `${button.textContent}`;
         num2 = undefined;
