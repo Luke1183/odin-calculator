@@ -73,7 +73,9 @@ buttons.forEach((button) => {
       operator === undefined &&
       num2 === undefined
     ) {
-      calcDisplay.textContent = "Input a number";
+      if (button.textContent === "-") {
+        num1 = button.textContent;
+      }
     } else if (
       (button.textContent === "+" ||
         button.textContent === "-" ||
