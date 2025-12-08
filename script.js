@@ -85,9 +85,12 @@ buttons.forEach((button) => {
       operator === undefined &&
       num2 === undefined
     ) {
-      if (button.textContent === "+" || button.textContent === "-") {
+      if (
+        (button.textContent === "+" || button.textContent === "-") &&
+        !(num1 === "-")
+      ) {
         operator = ` ${button.textContent} `;
-      } else {
+      } else if (!(num1 === "-")) {
         operator = `${button.textContent}`;
       }
     } else if (
