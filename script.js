@@ -57,7 +57,12 @@ buttons.forEach((button) => {
       if (num1 === undefined) {
         num1 = button.textContent;
       } else if (operator === undefined && !(num1 === undefined)) {
-        num1 = num1 + button.textContent;
+        if (isResNum === true) {
+          num1 = button.textContent;
+          isResNum = false;
+        } else {
+          num1 = num1 + button.textContent;
+        }
       } else if (!(operator === undefined) && num2 === undefined) {
         num2 = button.textContent;
       } else {
@@ -137,6 +142,7 @@ buttons.forEach((button) => {
         num1 = operate(Number(num1), Number(num2), operator);
         operator = undefined;
         num2 = undefined;
+        isResNum = true;
       }
     }
 
