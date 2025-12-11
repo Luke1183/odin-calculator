@@ -33,6 +33,7 @@ function operate(a, b, operator) {
 let num1 = undefined;
 let num2 = undefined;
 let operator = undefined;
+let isResNum = false;
 
 const calcDisplay = document.querySelector("#display");
 const buttons = document.querySelectorAll("button");
@@ -129,9 +130,14 @@ buttons.forEach((button) => {
       !(operator === undefined) &&
       !(num2 === undefined)
     ) {
-      num1 = operate(Number(num1), Number(num2), operator);
-      operator = undefined;
-      num2 = undefined;
+      if (num2 === "-") {
+        operator = undefined;
+        num2 = undefined;
+      } else {
+        num1 = operate(Number(num1), Number(num2), operator);
+        operator = undefined;
+        num2 = undefined;
+      }
     }
 
     if (button.textContent === "Clear") {
