@@ -30,10 +30,33 @@ function operate(a, b, operator) {
   }
 }
 
+function procNum(a) {
+  aString = a.toString();
+  aNum = Number(a);
+  aNumDec = aString.split(".");
+  if (aNumDec.length === 2 && aNumDec[1].length > 4) {
+    if (aNumDec[1].slice(0) === "0000") {
+      result = aNum.toFixed(0);
+    } else if (aNumDec[1].slice(1) === "000") {
+      result = aNum.toFixed(1);
+    } else if (aNumDec[1].slice(2) === "00") {
+      result = aNum.toFixed(2);
+    } else if (aNumDec[1].slice(3) === "0") {
+      result = aNum.toFixed(3);
+    } else {
+      result = aNum.toFixed(4);
+    }
+  } else {
+    result = a;
+  }
+  return result;
+}
+
 let num1 = undefined;
 let num2 = undefined;
 let operator = undefined;
 let isResNum = false;
+let result = undefined;
 
 const calcDisplay = document.querySelector("#display");
 const buttons = document.querySelectorAll("button");
@@ -152,6 +175,14 @@ buttons.forEach((button) => {
       num2 = undefined;
     }
 
+    if (!(num1 === undefined)) {
+      num1Disp = procNum(num1);
+    }
+
+    if (!(num2 === undefined)) {
+      num2Disp = procNum(num2);
+    }
+
     if (num1 === undefined && operator === undefined && num2 === undefined) {
       calcDisplay.textContent = "0";
     } else if (
@@ -159,16 +190,16 @@ buttons.forEach((button) => {
       operator === undefined &&
       num2 === undefined
     ) {
-      calcDisplay.textContent = `${num1}`;
+      calcDisplay.textContent = `${num1Disp}`;
     } else if (
       !(num1 === undefined) &&
       !(operator === undefined) &&
       num2 === undefined
     ) {
       if (operator === "+" || operator === "-") {
-        calcDisplay.textContent = `${num1}   ${operator}`;
+        calcDisplay.textContent = `${num1Disp}   ${operator}`;
       } else {
-        calcDisplay.textContent = `${num1} ${operator}`;
+        calcDisplay.textContent = `${num1Disp} ${operator}`;
       }
     } else if (
       !(num1 === undefined) &&
@@ -176,9 +207,9 @@ buttons.forEach((button) => {
       !(num2 === undefined)
     ) {
       if (operator === "+" || operator === "-") {
-        calcDisplay.textContent = `${num1}   ${operator}   ${num2}`;
+        calcDisplay.textContent = `${num1Disp}   ${operator}   ${num2Disp}`;
       } else {
-        calcDisplay.textContent = `${num1} ${operator} ${num2}`;
+        calcDisplay.textContent = `${num1Disp} ${operator} ${num2Disp}`;
       }
     }
   });
