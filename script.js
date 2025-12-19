@@ -35,13 +35,13 @@ function procNum(a) {
   aNum = Number(a);
   aNumDec = aString.split(".");
   if (aNumDec.length === 2 && aNumDec[1].length > 4) {
-    if (aNumDec[1].slice(0) === "0000") {
+    if (aNumDec[1].slice(0, 4) === "0000") {
       result = aNum.toFixed(0);
-    } else if (aNumDec[1].slice(1) === "000") {
+    } else if (aNumDec[1].slice(1, 4) === "000") {
       result = aNum.toFixed(1);
-    } else if (aNumDec[1].slice(2) === "00") {
+    } else if (aNumDec[1].slice(2, 4) === "00") {
       result = aNum.toFixed(2);
-    } else if (aNumDec[1].slice(3) === "0") {
+    } else if (aNumDec[1].slice(3, 4) === "0") {
       result = aNum.toFixed(3);
     } else {
       result = aNum.toFixed(4);
