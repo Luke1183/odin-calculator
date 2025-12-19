@@ -171,8 +171,10 @@ buttons.forEach((button) => {
 
     if (button.textContent === "Clear") {
       num1 = undefined;
+      isResNum = false;
       operator = undefined;
       num2 = undefined;
+      result = undefined;
     }
 
     if (!(num1 === undefined)) {
