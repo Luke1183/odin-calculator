@@ -124,10 +124,13 @@ buttons.forEach((button) => {
       button.textContent === "." &&
       !(num1 === undefined) &&
       !(operator === undefined) &&
-      !(num2 === undefined) &&
-      Number.isInteger(Number(num2))
+      !(num2 === undefined)
     ) {
-      num2 = num2 + button.textContent;
+      if (Number.isInteger(Number(num2))) {
+        num2 = num2 + button.textContent;
+      } else if (num2 === "-") {
+        num2 = num2 + "0" + button.textContent;
+      }
     }
 
     if (
