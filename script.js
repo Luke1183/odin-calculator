@@ -94,6 +94,43 @@ buttons.forEach((button) => {
     }
 
     if (
+      button.textContent === "." &&
+      num1 === undefined &&
+      operator === undefined &&
+      num2 === undefined
+    ) {
+      num1 = "0" + button.textContent;
+    } else if (
+      button.textContent === "." &&
+      !(num1 === undefined) &&
+      Number.isInteger(Number(num1)) &&
+      operator === undefined &&
+      num2 === undefined
+    ) {
+      if (isResNum === true) {
+        num1 = "0" + button.textContent;
+        isResNum = false;
+      } else {
+        num1 = num1 + button.textContent;
+      }
+    } else if (
+      button.textContent === "." &&
+      !(num1 === undefined) &&
+      !(operator === undefined) &&
+      num2 === undefined
+    ) {
+      num2 = "0" + button.textContent;
+    } else if (
+      button.textContent === "." &&
+      !(num1 === undefined) &&
+      !(operator === undefined) &&
+      !(num2 === undefined) &&
+      Number.isInteger(Number(num2))
+    ) {
+      num2 = num2 + button.textContent;
+    }
+
+    if (
       (button.textContent === "+" ||
         button.textContent === "-" ||
         button.textContent === "*" ||
