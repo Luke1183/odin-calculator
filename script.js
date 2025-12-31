@@ -58,6 +58,8 @@ let operator = undefined;
 let isResNum = false;
 let result = undefined;
 
+let num1IsInteger = true;
+
 const calcDisplay = document.querySelector("#display");
 const buttons = document.querySelectorAll("button");
 
@@ -109,7 +111,7 @@ buttons.forEach((button) => {
       if (isResNum === true) {
         num1 = "0" + button.textContent;
         isResNum = false;
-      } else if (Number.isInteger(Number(num1))) {
+      } else if (num1IsInteger === true) {
         num1 = num1 + button.textContent;
       } else if (num1 === "-") {
         num1 = num1 + "0" + button.textContent;
@@ -216,6 +218,25 @@ buttons.forEach((button) => {
       operator = undefined;
       num2 = undefined;
       result = undefined;
+    }
+
+    if (button.textContent === "Delete") {
+      if (
+        !(num1 === undefined) &&
+        !(operator === undefined) &&
+        !(num2 === undefined)
+      ) {
+        num2 = num2.slice(0, num2.length - 1);
+        if (num2 === "") {
+          num2 = undefined;
+        }
+      }
+    }
+
+    if (num1.toString().split(".").length === 2) {
+      num1IsInteger = false;
+    } else {
+      num1Integer = true;
     }
 
     if (!(num1 === undefined)) {
