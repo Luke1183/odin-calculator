@@ -59,6 +59,7 @@ let isResNum = false;
 let result = undefined;
 
 let num1IsInteger = true;
+let num2IsInteger = true;
 
 const calcDisplay = document.querySelector("#display");
 const buttons = document.querySelectorAll("button");
@@ -236,7 +237,13 @@ buttons.forEach((button) => {
     if (num1.toString().split(".").length === 2) {
       num1IsInteger = false;
     } else {
-      num1Integer = true;
+      num1IsInteger = true;
+    }
+
+    if (num2.toString().split(".").length === 2) {
+      num2IsInteger = false;
+    } else {
+      num2IsInteger = true;
     }
 
     if (!(num1 === undefined)) {
