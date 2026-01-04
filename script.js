@@ -133,7 +133,7 @@ zeroButton.addEventListener("click", () => {
   ) {
     num1 = "0";
     isResNum = false;
-  } else if (!(num1 === "0")) {
+  } else if (!(num1 === "0") && operator === undefined) {
     num1 = num1 + "0";
   } else if (!(operator === undefined) && num2 === undefined) {
     num2 = "0";
