@@ -126,16 +126,18 @@ calcDisplay.textContent = "0";
 zeroButton.addEventListener("click", () => {
   if (num1 === undefined) {
     num1 = "0";
-  } else if (operator === undefined && !(num1 === undefined)) {
-    if (isResNum === true) {
-      num1 = "0";
-      isResNum = false;
-    } else {
-      num1 = num1 + "0";
-    }
+  } else if (
+    operator === undefined &&
+    !(num1 === undefined) &&
+    isResNum === true
+  ) {
+    num1 = "0";
+    isResNum = false;
+  } else if (!(num1 === "0")) {
+    num1 = num1 + "0";
   } else if (!(operator === undefined) && num2 === undefined) {
     num2 = "0";
-  } else {
+  } else if (!(num2 === "0")) {
     num2 = num2 + "0";
   }
 
@@ -147,7 +149,7 @@ zeroButton.addEventListener("click", () => {
 
 digitButtons.forEach((button) => {
   button.addEventListener("click", () => {
-    if (num1 === undefined) {
+    if (num1 === undefined || num1 === "0") {
       num1 = button.textContent;
     } else if (operator === undefined && !(num1 === undefined)) {
       if (isResNum === true) {
@@ -156,7 +158,10 @@ digitButtons.forEach((button) => {
       } else {
         num1 = num1 + button.textContent;
       }
-    } else if (!(operator === undefined) && num2 === undefined) {
+    } else if (
+      !(operator === undefined) &&
+      (num2 === undefined || num2 === "0")
+    ) {
       num2 = button.textContent;
     } else {
       num2 = num2 + button.textContent;
