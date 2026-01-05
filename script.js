@@ -276,56 +276,24 @@ operatorButtons.forEach((button) => {
 });
 
 minusButton.addEventListener("click", () => {
-  if (
-    (button.textContent === "+" ||
-      button.textContent === "-" ||
-      button.textContent === "*" ||
-      button.textContent === "/") &&
-    num1 === undefined &&
-    operator === undefined &&
-    num2 === undefined
-  ) {
-    if (button.textContent === "-") {
-      num1 = button.textContent;
-    }
+  if (num1 === undefined && operator === undefined && num2 === undefined) {
+    num1 = "-";
+  } else if (!(num1 === "-") && !(Number(num1) == 0)) {
+    operator = "-";
   } else if (
-    (button.textContent === "+" ||
-      button.textContent === "-" ||
-      button.textContent === "*" ||
-      button.textContent === "/") &&
-    !(num1 === undefined) &&
-    operator === undefined &&
-    num2 === undefined
-  ) {
-    if (!(num1 === "-")) {
-      operator = button.textContent;
-    }
-  } else if (
-    (button.textContent === "+" ||
-      button.textContent === "-" ||
-      button.textContent === "*" ||
-      button.textContent === "/") &&
     !(num1 === undefined) &&
     !(operator === undefined) &&
     num2 === undefined
   ) {
-    if (button.textContent === "-") {
-      num2 = button.textContent;
-    }
+    num2 = "-";
   } else if (
-    (button.textContent === "+" ||
-      button.textContent === "-" ||
-      button.textContent === "*" ||
-      button.textContent === "/") &&
     !(num1 === undefined) &&
     !(operator === undefined) &&
-    !(num2 === undefined)
+    !(num2 === "-")
   ) {
-    if (!(num2 === "-")) {
-      num1 = operate(Number(num1), Number(num2), operator);
-      operator = button.textContent;
-      num2 = undefined;
-    }
+    num1 = operate(Number(num1), Number(num2), operator);
+    operator = button.textContent;
+    num2 = undefined;
   }
 
   num1IsInteger = checkForInteger(num1);
