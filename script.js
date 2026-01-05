@@ -276,7 +276,11 @@ operatorButtons.forEach((button) => {
 });
 
 minusButton.addEventListener("click", () => {
-  if (num1 === undefined && operator === undefined && num2 === undefined) {
+  if (
+    (num1 === undefined || num1 == 0) &&
+    operator === undefined &&
+    num2 === undefined
+  ) {
     num1 = "-";
   } else if (!(num1 === "-") && !(Number(num1) == 0)) {
     operator = "-";
