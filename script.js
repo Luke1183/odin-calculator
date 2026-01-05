@@ -282,7 +282,7 @@ minusButton.addEventListener("click", () => {
     num2 === undefined
   ) {
     num1 = "-";
-  } else if (!(num1 === "-") && !(num1 == 0)) {
+  } else if (!(num1 === "-") && !(num1 == 0) && num1 === undefined) {
     operator = "-";
   } else if (
     !(num1 === undefined) &&
