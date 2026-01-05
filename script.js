@@ -18,7 +18,7 @@ function divNum(a, b) {
   }
 }
 
-function operate(a, b, operator) {
+function operate(a, operator, b) {
   if (operator === "+") {
     return addNum(a, b);
   } else if (operator === "-") {
@@ -262,7 +262,7 @@ operatorButtons.forEach((button) => {
       !(num2 === undefined)
     ) {
       if (!(num2 === "-")) {
-        num1 = operate(Number(num1), Number(num2), operator);
+        num1 = operate(Number(num1), operator, Number(num2));
         operator = button.textContent;
         num2 = undefined;
       }
@@ -295,7 +295,7 @@ minusButton.addEventListener("click", () => {
     !(operator === undefined) &&
     !(num2 === "-")
   ) {
-    num1 = operate(Number(num1), Number(num2), operator);
+    num1 = operate(Number(num1), operator, Number(num2));
     operator = button.textContent;
     num2 = undefined;
   }
@@ -322,7 +322,7 @@ equalsButton.addEventListener("click", () => {
       operator = undefined;
       num2 = undefined;
     } else {
-      num1 = operate(Number(num1), Number(num2), operator);
+      num1 = operate(Number(num1), operator, Number(num2));
       operator = undefined;
       num2 = undefined;
       isResNum = true;
