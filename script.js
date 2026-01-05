@@ -358,6 +358,26 @@ deleteButton.addEventListener("click", () => {
     if (num2 === "") {
       num2 = undefined;
     }
+  } else if (
+    !(num1 === undefined) &&
+    !(operator === undefined) &&
+    num2 === undefined
+  ) {
+    operator = undefined;
+  } else if (
+    !(num1 === undefined) &&
+    operator === undefined &&
+    num2 === undefined
+  ) {
+    if (isResNum === true) {
+      num1 = undefined;
+      isResNum = false;
+    } else {
+      num1 = num1.slice(0, num1.length - 1);
+      if (num1 === "") {
+        num1 = undefined;
+      }
+    }
   }
 
   num1IsInteger = checkForInteger(num1);
