@@ -124,7 +124,7 @@ const deleteButton = document.querySelector("#delete");
 calcDisplay.textContent = "0";
 
 zeroButton.addEventListener("click", () => {
-  if (num1 === undefined) {
+  if (num1 === undefined || num1 === "0") {
     num1 = "0";
   } else if (
     operator === undefined &&
