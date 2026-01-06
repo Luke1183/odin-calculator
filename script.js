@@ -296,7 +296,7 @@ minusButton.addEventListener("click", () => {
     !(num2 === "-")
   ) {
     num1 = operate(Number(num1), operator, Number(num2));
-    operator = button.textContent;
+    operator = "-";
     num2 = undefined;
   }
 
