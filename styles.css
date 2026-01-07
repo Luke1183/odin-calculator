@@ -23,13 +23,22 @@ body {
     border: solid;
     border-width: 1px;
     padding: 4px;
-    gap: 4px;
     background-color: gray;
+    width: 183px;
+}
+
+#calculator {
+    gap: 4px;
 }
 
 h1,
 #display {
     color: white;
+}
+
+h1 {
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 #display {
@@ -42,6 +51,15 @@ button {
     color: white;
     height: 40px;
     width: 40px;
+    margin-top: 4px;
+}
+
+button:hover {
+    opacity: 66%;
+}
+
+button:active {
+    opacity: 33%;
 }
 
 #clear,
@@ -71,6 +89,7 @@ button {
 #dec {
     background-color: darkturquoise;
 }
+
 
 /* #grid-options {
     display: flex;
