@@ -148,6 +148,11 @@ const deleteButton = document.querySelector("#delete");
 calcDisplay.textContent = "0";
 
 zeroButton.addEventListener("click", inputZero);
+document.addEventListener("keydown", function (event) {
+  if (event.key == "0") {
+    inputZero();
+  }
+});
 
 digitButtons.forEach((button) => {
   button.addEventListener("click", () => {
