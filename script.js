@@ -54,6 +54,131 @@ function inputZero() {
   updateDisplay(num1, operator, num2);
 }
 
+function inputNonZeroDigit(digit) {
+  if (num1 === undefined || num1 === "0") {
+    num1 = digit;
+  } else if (operator === undefined && !(num1 === undefined)) {
+    if (isResNum === true) {
+      num1 = digit;
+      isResNum = false;
+    } else {
+      num1 = num1 + digit;
+    }
+  } else if (
+    !(operator === undefined) &&
+    (num2 === undefined || num2 === "0")
+  ) {
+    num2 = digit;
+  } else {
+    num2 = num2 + digit;
+  }
+
+  num1IsInteger = checkForInteger(num1);
+  num2IsInteger = checkForInteger(num2);
+
+  updateDisplay(num1, operator, num2);
+}
+
+function inputDecimal() {
+  if (num1 === undefined && operator === undefined && num2 === undefined) {
+    num1 = "0.";
+  } else if (
+    !(num1 === undefined) &&
+    operator === undefined &&
+    num2 === undefined
+  ) {
+    if (isResNum === true) {
+      num1 = "0.";
+      isResNum = false;
+    } else if (num1IsInteger === true) {
+      num1 = num1 + ".";
+    } else if (num1 === "-") {
+      num1 = num1 + "0.";
+    }
+  } else if (
+    !(num1 === undefined) &&
+    !(operator === undefined) &&
+    num2 === undefined
+  ) {
+    num2 = "0.";
+  } else if (
+    !(num1 === undefined) &&
+    !(operator === undefined) &&
+    !(num2 === undefined)
+  ) {
+    if (Number.isInteger(Number(num2))) {
+      num2 = num2 + ".";
+    } else if (num2 === "-") {
+      num2 = num2 + "0.";
+    }
+  }
+
+  num1IsInteger = checkForInteger(num1);
+  num2IsInteger = checkForInteger(num2);
+
+  updateDisplay(num1, operator, num2);
+}
+
+function inputNonMinusOperator(nonMinusOperator) {
+  if (!(num1 === undefined) && operator === undefined && num2 === undefined) {
+    if (!(num1 === "-")) {
+      operator = nonMinusOperator;
+    }
+  } else if (
+    !(num1 === undefined) &&
+    !(operator === undefined) &&
+    num2 === undefined
+  ) {
+    operator = nonMinusOperator;
+  } else if (
+    !(num1 === undefined) &&
+    !(operator === undefined) &&
+    !(num2 === undefined)
+  ) {
+    if (!(num2 === "-")) {
+      num1 = operate(Number(num1), operator, Number(num2));
+      operator = nonMinusOperator;
+      num2 = undefined;
+    }
+  }
+
+  num1IsInteger = checkForInteger(num1);
+  num2IsInteger = checkForInteger(num2);
+
+  updateDisplay(num1, operator, num2);
+}
+
+function inputMinus() {
+  if (
+    (num1 === undefined || num1 == 0) &&
+    operator === undefined &&
+    num2 === undefined
+  ) {
+    num1 = "-";
+  } else if (!(num1 === "-") && !(num1 == 0) && operator === undefined) {
+    operator = "-";
+  } else if (
+    !(num1 === undefined) &&
+    !(operator === undefined) &&
+    num2 === undefined
+  ) {
+    num2 = "-";
+  } else if (
+    !(num1 === undefined) &&
+    !(operator === undefined) &&
+    !(num2 === "-")
+  ) {
+    num1 = operate(Number(num1), operator, Number(num2));
+    operator = "-";
+    num2 = undefined;
+  }
+
+  num1IsInteger = checkForInteger(num1);
+  num2IsInteger = checkForInteger(num2);
+
+  updateDisplay(num1, operator, num2);
+}
+
 function checkForInteger(number) {
   if (number === undefined) {
     return undefined;
@@ -148,169 +273,49 @@ const deleteButton = document.querySelector("#delete");
 calcDisplay.textContent = "0";
 
 zeroButton.addEventListener("click", inputZero);
-document.addEventListener("keydown", function (event) {
-  if (event.key == "0") {
-    inputZero();
-  }
-});
 
 digitButtons.forEach((button) => {
   button.addEventListener("click", () => {
-    if (num1 === undefined || num1 === "0") {
-      num1 = button.textContent;
-    } else if (operator === undefined && !(num1 === undefined)) {
-      if (isResNum === true) {
-        num1 = button.textContent;
-        isResNum = false;
-      } else {
-        num1 = num1 + button.textContent;
-      }
-    } else if (
-      !(operator === undefined) &&
-      (num2 === undefined || num2 === "0")
-    ) {
-      num2 = button.textContent;
-    } else {
-      num2 = num2 + button.textContent;
-    }
-
-    num1IsInteger = checkForInteger(num1);
-    num2IsInteger = checkForInteger(num2);
-
-    updateDisplay(num1, operator, num2);
+    inputNonZeroDigit(button.textContent);
   });
 });
 
-decimalButton.addEventListener("click", () => {
-  if (num1 === undefined && operator === undefined && num2 === undefined) {
-    num1 = "0.";
-  } else if (
-    !(num1 === undefined) &&
-    operator === undefined &&
-    num2 === undefined
-  ) {
-    if (isResNum === true) {
-      num1 = "0.";
-      isResNum = false;
-    } else if (num1IsInteger === true) {
-      num1 = num1 + ".";
-    } else if (num1 === "-") {
-      num1 = num1 + "0.";
-    }
-  } else if (
-    !(num1 === undefined) &&
-    !(operator === undefined) &&
-    num2 === undefined
-  ) {
-    num2 = "0.";
-  } else if (
-    !(num1 === undefined) &&
-    !(operator === undefined) &&
-    !(num2 === undefined)
-  ) {
-    if (Number.isInteger(Number(num2))) {
-      num2 = num2 + ".";
-    } else if (num2 === "-") {
-      num2 = num2 + "0.";
-    }
-  }
-
-  num1IsInteger = checkForInteger(num1);
-  num2IsInteger = checkForInteger(num2);
-
-  updateDisplay(num1, operator, num2);
-});
+decimalButton.addEventListener("click", inputDecimal);
 
 operatorButtons.forEach((button) => {
   button.addEventListener("click", () => {
-    if (
-      (button.textContent === "+" ||
-        button.textContent === "-" ||
-        button.textContent === "*" ||
-        button.textContent === "/") &&
-      num1 === undefined &&
-      operator === undefined &&
-      num2 === undefined
-    ) {
-      if (button.textContent === "-") {
-        num1 = button.textContent;
-      }
-    } else if (
-      (button.textContent === "+" ||
-        button.textContent === "-" ||
-        button.textContent === "*" ||
-        button.textContent === "/") &&
-      !(num1 === undefined) &&
-      operator === undefined &&
-      num2 === undefined
-    ) {
-      if (!(num1 === "-")) {
-        operator = button.textContent;
-      }
-    } else if (
-      (button.textContent === "+" ||
-        button.textContent === "-" ||
-        button.textContent === "*" ||
-        button.textContent === "/") &&
-      !(num1 === undefined) &&
-      !(operator === undefined) &&
-      num2 === undefined
-    ) {
-      if (button.textContent === "-") {
-        num2 = button.textContent;
-      }
-    } else if (
-      (button.textContent === "+" ||
-        button.textContent === "-" ||
-        button.textContent === "*" ||
-        button.textContent === "/") &&
-      !(num1 === undefined) &&
-      !(operator === undefined) &&
-      !(num2 === undefined)
-    ) {
-      if (!(num2 === "-")) {
-        num1 = operate(Number(num1), operator, Number(num2));
-        operator = button.textContent;
-        num2 = undefined;
-      }
-    }
-
-    num1IsInteger = checkForInteger(num1);
-    num2IsInteger = checkForInteger(num2);
-
-    updateDisplay(num1, operator, num2);
+    inputNonMinusOperator(button.textContent);
   });
 });
 
-minusButton.addEventListener("click", () => {
-  if (
-    (num1 === undefined || num1 == 0) &&
-    operator === undefined &&
-    num2 === undefined
-  ) {
-    num1 = "-";
-  } else if (!(num1 === "-") && !(num1 == 0) && operator === undefined) {
-    operator = "-";
-  } else if (
-    !(num1 === undefined) &&
-    !(operator === undefined) &&
-    num2 === undefined
-  ) {
-    num2 = "-";
-  } else if (
-    !(num1 === undefined) &&
-    !(operator === undefined) &&
-    !(num2 === "-")
-  ) {
-    num1 = operate(Number(num1), operator, Number(num2));
-    operator = "-";
-    num2 = undefined;
+minusButton.addEventListener("click", inputMinus);
+
+window.addEventListener("keypress", function (event) {
+  if (event.key == "0") {
+    inputZero();
   }
-
-  num1IsInteger = checkForInteger(num1);
-  num2IsInteger = checkForInteger(num2);
-
-  updateDisplay(num1, operator, num2);
+  if (
+    event.key == "1" ||
+    event.key == "2" ||
+    event.key == "3" ||
+    event.key == "4" ||
+    event.key == "5" ||
+    event.key == "6" ||
+    event.key == "7" ||
+    event.key == "8" ||
+    event.key == "9"
+  ) {
+    inputNonZeroDigit(event.key);
+  }
+  if (event.key == ".") {
+    inputDecimal();
+  }
+  if (event.key == "/" || event.key == "*" || event.key == "+") {
+    inputNonMinusOperator(event.key);
+  }
+  if (event.key == "-") {
+    inputMinus();
+  }
 });
 
 equalsButton.addEventListener("click", () => {
