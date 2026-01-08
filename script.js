@@ -30,6 +30,30 @@ function operate(a, operator, b) {
   }
 }
 
+function inputZero() {
+  if (num1 === undefined || num1 === "0") {
+    num1 = "0";
+  } else if (
+    operator === undefined &&
+    !(num1 === undefined) &&
+    isResNum === true
+  ) {
+    num1 = "0";
+    isResNum = false;
+  } else if (!(num1 === "0") && operator === undefined) {
+    num1 = num1 + "0";
+  } else if (!(operator === undefined) && num2 === undefined) {
+    num2 = "0";
+  } else if (!(num2 === "0")) {
+    num2 = num2 + "0";
+  }
+
+  num1IsInteger = checkForInteger(num1);
+  num2IsInteger = checkForInteger(num2);
+
+  updateDisplay(num1, operator, num2);
+}
+
 function checkForInteger(number) {
   if (number === undefined) {
     return undefined;
@@ -123,29 +147,7 @@ const deleteButton = document.querySelector("#delete");
 
 calcDisplay.textContent = "0";
 
-zeroButton.addEventListener("click", () => {
-  if (num1 === undefined || num1 === "0") {
-    num1 = "0";
-  } else if (
-    operator === undefined &&
-    !(num1 === undefined) &&
-    isResNum === true
-  ) {
-    num1 = "0";
-    isResNum = false;
-  } else if (!(num1 === "0") && operator === undefined) {
-    num1 = num1 + "0";
-  } else if (!(operator === undefined) && num2 === undefined) {
-    num2 = "0";
-  } else if (!(num2 === "0")) {
-    num2 = num2 + "0";
-  }
-
-  num1IsInteger = checkForInteger(num1);
-  num2IsInteger = checkForInteger(num2);
-
-  updateDisplay(num1, operator, num2);
-});
+zeroButton.addEventListener("click", inputZero);
 
 digitButtons.forEach((button) => {
   button.addEventListener("click", () => {
