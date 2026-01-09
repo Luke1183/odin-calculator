@@ -106,7 +106,7 @@ function inputDecimal() {
     !(operator === undefined) &&
     !(num2 === undefined)
   ) {
-    if (Number.isInteger(Number(num2))) {
+    if (!num2.includes(".") && !num2 === "-") {
       num2 = num2 + ".";
     } else if (num2 === "-") {
       num2 = num2 + "0.";
