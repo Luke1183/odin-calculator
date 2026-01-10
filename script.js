@@ -110,6 +110,8 @@ function inputDecimal() {
       num2 = num2 + ".";
     } else if (num2 === "-") {
       num2 = num2 + "0.";
+    } else if (num2 === "0") {
+      num2 = "0.";
     }
   }
 
