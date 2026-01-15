@@ -378,9 +378,10 @@ clearButton.addEventListener("click", inputClear);
 
 deleteButton.addEventListener("click", inputDelete);
 
-window.addEventListener("keypress", function (event) {
+window.addEventListener("keydown", function (event) {
   if (event.key == "0") {
     inputZero();
+    zeroButton.style.backgroundColor = "gray";
   }
   if (
     event.key == "1" ||
@@ -397,20 +398,34 @@ window.addEventListener("keypress", function (event) {
   }
   if (event.key == ".") {
     inputDecimal();
+    decimalButton.style.backgroundColor = "gray";
   }
   if (event.key == "/" || event.key == "*" || event.key == "+") {
     inputNonMinusOperator(event.key);
   }
   if (event.key == "-") {
     inputMinus();
+    minusButton.style.backgroundColor = "gray";
   }
   if (event.key == "=" || event.key == "Enter") {
     inputEquals();
+    equalsButton.style.backgroundColor = "gray";
   }
   if (event.key == "c") {
     inputClear();
+    clearButton.style.backgroundColor = "gray";
   }
   if (event.key == "Backspace") {
     inputDelete();
+    deleteButton.style.backgroundColor = "gray";
   }
+});
+
+window.addEventListener("keyup", function (event) {
+  zeroButton.style.backgroundColor = "darkturquoise";
+  decimalButton.style.backgroundColor = "darkturquoise";
+  minusButton.style.backgroundColor = "blue";
+  equalsButton.style.backgroundColor = "green";
+  clearButton.style.backgroundColor = "red";
+  deleteButton.style.backgroundColor = "orange";
 });
