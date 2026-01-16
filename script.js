@@ -344,7 +344,15 @@ let num2IsInteger = undefined;
 
 const calcDisplay = document.querySelector("#display");
 const zeroButton = document.querySelector("#dig0");
-const digitButtons = document.querySelectorAll("button.dig");
+const oneButton = document.querySelector("#dig1");
+const twoButton = document.querySelector("#dig2");
+const threeButton = document.querySelector("#dig3");
+const fourButton = document.querySelector("#dig4");
+const fiveButton = document.querySelector("#dig5");
+const sixButton = document.querySelector("#dig6");
+const sevenButton = document.querySelector("#dig7");
+const eightButton = document.querySelector("#dig8");
+const nineButton = document.querySelector("#dig9");
 const decimalButton = document.querySelector("#dec");
 const nonMinusOperatorButtons = document.querySelectorAll("button.op");
 const minusButton = document.querySelector("#opNeg");
@@ -356,11 +364,47 @@ calcDisplay.textContent = "0";
 
 zeroButton.addEventListener("click", inputZero);
 
-digitButtons.forEach((button) => {
-  button.addEventListener("click", () => {
-    inputNonZeroDigit(button.textContent);
-  });
+oneButton.addEventListener("click", () => {
+  inputNonZeroDigit("1");
 });
+
+twoButton.addEventListener("click", () => {
+  inputNonZeroDigit("2");
+});
+
+threeButton.addEventListener("click", () => {
+  inputNonZeroDigit("3");
+});
+
+fourButton.addEventListener("click", () => {
+  inputNonZeroDigit("4");
+});
+
+fiveButton.addEventListener("click", () => {
+  inputNonZeroDigit("5");
+});
+
+sixButton.addEventListener("click", () => {
+  inputNonZeroDigit("6");
+});
+
+sevenButton.addEventListener("click", () => {
+  inputNonZeroDigit("7");
+});
+
+eightButton.addEventListener("click", () => {
+  inputNonZeroDigit("8");
+});
+
+nineButton.addEventListener("click", () => {
+  inputNonZeroDigit("9");
+});
+
+// digitButtons.forEach((button) => {
+//   button.addEventListener("click", () => {
+//     inputNonZeroDigit(button.textContent);
+//   });
+// });
 
 decimalButton.addEventListener("click", inputDecimal);
 
@@ -383,18 +427,41 @@ window.addEventListener("keydown", function (event) {
     inputZero();
     zeroButton.style.backgroundColor = "gray";
   }
-  if (
-    event.key == "1" ||
-    event.key == "2" ||
-    event.key == "3" ||
-    event.key == "4" ||
-    event.key == "5" ||
-    event.key == "6" ||
-    event.key == "7" ||
-    event.key == "8" ||
-    event.key == "9"
-  ) {
-    inputNonZeroDigit(event.key);
+  if (event.key == "1") {
+    inputNonZeroDigit("1");
+    oneButton.style.backgroundColor = "gray";
+  }
+  if (event.key == "2") {
+    inputNonZeroDigit("2");
+    twoButton.style.backgroundColor = "gray";
+  }
+  if (event.key == "3") {
+    inputNonZeroDigit("3");
+    threeButton.style.backgroundColor = "gray";
+  }
+  if (event.key == "4") {
+    inputNonZeroDigit("4");
+    fourButton.style.backgroundColor = "gray";
+  }
+  if (event.key == "5") {
+    inputNonZeroDigit("5");
+    fiveButton.style.backgroundColor = "gray";
+  }
+  if (event.key == "6") {
+    inputNonZeroDigit("6");
+    sixButton.style.backgroundColor = "gray";
+  }
+  if (event.key == "7") {
+    inputNonZeroDigit("7");
+    sevenButton.style.backgroundColor = "gray";
+  }
+  if (event.key == "8") {
+    inputNonZeroDigit("8");
+    eightButton.style.backgroundColor = "gray";
+  }
+  if (event.key == "9") {
+    inputNonZeroDigit("9");
+    nineButton.style.backgroundColor = "gray";
   }
   if (event.key == ".") {
     inputDecimal();
@@ -423,6 +490,15 @@ window.addEventListener("keydown", function (event) {
 
 window.addEventListener("keyup", function (event) {
   zeroButton.style.backgroundColor = "darkturquoise";
+  oneButton.style.backgroundColor = "darkturquoise";
+  twoButton.style.backgroundColor = "darkturquoise";
+  threeButton.style.backgroundColor = "darkturquoise";
+  fourButton.style.backgroundColor = "darkturquoise";
+  fiveButton.style.backgroundColor = "darkturquoise";
+  sixButton.style.backgroundColor = "darkturquoise";
+  sevenButton.style.backgroundColor = "darkturquoise";
+  eightButton.style.backgroundColor = "darkturquoise";
+  nineButton.style.backgroundColor = "darkturquoise";
   decimalButton.style.backgroundColor = "darkturquoise";
   minusButton.style.backgroundColor = "blue";
   equalsButton.style.backgroundColor = "green";
