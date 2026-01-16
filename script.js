@@ -354,8 +354,10 @@ const sevenButton = document.querySelector("#dig7");
 const eightButton = document.querySelector("#dig8");
 const nineButton = document.querySelector("#dig9");
 const decimalButton = document.querySelector("#dec");
-const nonMinusOperatorButtons = document.querySelectorAll("button.op");
+const plusButton = document.querySelector("#opPlus");
 const minusButton = document.querySelector("#opNeg");
+const divButton = document.querySelector("#opDiv");
+const multButton = document.querySelector("#opMult");
 const equalsButton = document.querySelector("#equals");
 const clearButton = document.querySelector("#clear");
 const deleteButton = document.querySelector("#delete");
@@ -408,13 +410,19 @@ nineButton.addEventListener("click", () => {
 
 decimalButton.addEventListener("click", inputDecimal);
 
-nonMinusOperatorButtons.forEach((button) => {
-  button.addEventListener("click", () => {
-    inputNonMinusOperator(button.textContent);
-  });
+plusButton.addEventListener("click", () => {
+  inputNonMinusOperator("+");
 });
 
 minusButton.addEventListener("click", inputMinus);
+
+divButton.addEventListener("click", () => {
+  inputNonMinusOperator("/");
+});
+
+multButton.addEventListener("click", () => {
+  inputNonMinusOperator("*");
+});
 
 equalsButton.addEventListener("click", inputEquals);
 
@@ -425,66 +433,75 @@ deleteButton.addEventListener("click", inputDelete);
 window.addEventListener("keydown", function (event) {
   if (event.key == "0") {
     inputZero();
-    zeroButton.style.backgroundColor = "gray";
+    zeroButton.style.backgroundColor = "lightgray";
   }
   if (event.key == "1") {
     inputNonZeroDigit("1");
-    oneButton.style.backgroundColor = "gray";
+    oneButton.style.backgroundColor = "lightgray";
   }
   if (event.key == "2") {
     inputNonZeroDigit("2");
-    twoButton.style.backgroundColor = "gray";
+    twoButton.style.backgroundColor = "lightgray";
   }
   if (event.key == "3") {
     inputNonZeroDigit("3");
-    threeButton.style.backgroundColor = "gray";
+    threeButton.style.backgroundColor = "lightgray";
   }
   if (event.key == "4") {
     inputNonZeroDigit("4");
-    fourButton.style.backgroundColor = "gray";
+    fourButton.style.backgroundColor = "lightgray";
   }
   if (event.key == "5") {
     inputNonZeroDigit("5");
-    fiveButton.style.backgroundColor = "gray";
+    fiveButton.style.backgroundColor = "lightgray";
   }
   if (event.key == "6") {
     inputNonZeroDigit("6");
-    sixButton.style.backgroundColor = "gray";
+    sixButton.style.backgroundColor = "lightgray";
   }
   if (event.key == "7") {
     inputNonZeroDigit("7");
-    sevenButton.style.backgroundColor = "gray";
+    sevenButton.style.backgroundColor = "lightgray";
   }
   if (event.key == "8") {
     inputNonZeroDigit("8");
-    eightButton.style.backgroundColor = "gray";
+    eightButton.style.backgroundColor = "lightgray";
   }
   if (event.key == "9") {
     inputNonZeroDigit("9");
-    nineButton.style.backgroundColor = "gray";
+    nineButton.style.backgroundColor = "lightgray";
   }
   if (event.key == ".") {
     inputDecimal();
-    decimalButton.style.backgroundColor = "gray";
+    decimalButton.style.backgroundColor = "lightgray";
   }
-  if (event.key == "/" || event.key == "*" || event.key == "+") {
-    inputNonMinusOperator(event.key);
+  if (event.key == "+") {
+    inputNonMinusOperator("+");
+    plusButton.style.backgroundColor = "lightgray";
   }
   if (event.key == "-") {
     inputMinus();
-    minusButton.style.backgroundColor = "gray";
+    minusButton.style.backgroundColor = "lightgray";
+  }
+  if (event.key == "/") {
+    inputNonMinusOperator("/");
+    divButton.style.backgroundColor = "lightgray";
+  }
+  if (event.key == "*") {
+    inputNonMinusOperator("*");
+    multButton.style.backgroundColor = "lightgray";
   }
   if (event.key == "=" || event.key == "Enter") {
     inputEquals();
-    equalsButton.style.backgroundColor = "gray";
+    equalsButton.style.backgroundColor = "lightgray";
   }
   if (event.key == "c") {
     inputClear();
-    clearButton.style.backgroundColor = "gray";
+    clearButton.style.backgroundColor = "lightgray";
   }
   if (event.key == "Backspace") {
     inputDelete();
-    deleteButton.style.backgroundColor = "gray";
+    deleteButton.style.backgroundColor = "lightgray";
   }
 });
 
@@ -500,7 +517,10 @@ window.addEventListener("keyup", function (event) {
   eightButton.style.backgroundColor = "darkturquoise";
   nineButton.style.backgroundColor = "darkturquoise";
   decimalButton.style.backgroundColor = "darkturquoise";
+  plusButton.style.backgroundColor = "blue";
   minusButton.style.backgroundColor = "blue";
+  divButton.style.backgroundColor = "blue";
+  multButton.style.backgroundColor = "blue";
   equalsButton.style.backgroundColor = "green";
   clearButton.style.backgroundColor = "red";
   deleteButton.style.backgroundColor = "orange";
