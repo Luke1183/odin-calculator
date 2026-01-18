@@ -106,12 +106,10 @@ function inputDecimal() {
     !(operator === undefined) &&
     !(num2 === undefined)
   ) {
-    if (!num2.includes(".") && !num2 === "-") {
-      num2 = num2 + ".";
-    } else if (num2 === "-") {
+    if (num2 === "-") {
       num2 = num2 + "0.";
-    } else if (num2 === "0") {
-      num2 = "0.";
+    } else if (num2IsInteger === true) {
+      num2 = num2 + ".";
     }
   }
 
@@ -264,7 +262,9 @@ function inputDelete() {
 function checkForInteger(number) {
   if (number === undefined) {
     return undefined;
-  } else if (num1.toString().split(".").length === 2) {
+  } else if (number.toString().split(".").length === 2) {
+    return false;
+  } else if (number.toString()[number.length - 1] === ".") {
     return false;
   } else {
     return true;
